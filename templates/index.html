@@ -101,3 +101,9 @@ required></textarea>
 </main>
 </body>
 </html>
+
+{% if solicitacao.status != "Concluído" %}
+<a href="/concluir/{{ solicitacao.id }}">Concluir</a>
+{% else %}
+Finalizada
+{% endif %}
