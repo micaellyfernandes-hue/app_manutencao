@@ -66,6 +66,15 @@ nova_solicitacao = {
 campos_obrigatorios = [
 "nome",
 
-  
+  @app.route("/concluir/<id_solicitacao>")
+def concluir(id_solicitacao):
+solicitacoes = carregar_solicitacoes()
+for solicitacao in solicitacoes:
+if solicitacao.get("id") == id_solicitacao:
+solicitacao["status"] = "Concluído"
+break
+salvar_solicitacoes(solicitacoes)
+return redirect("/")
+
 
 
