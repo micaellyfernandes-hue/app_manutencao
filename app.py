@@ -15,3 +15,11 @@ ARQUIVO, "r", newline="", encoding="utf-8"
 leitor = csv.DictReader(arquivo)
 solicitacoes.extend(leitor)
 return solicitacoes
+
+@app.route("/")
+def inicio():
+solicitacoes = carregar_solicitacoes()
+return render_template(
+"index.html",
+solicitacoes=solicitacoes
+)
