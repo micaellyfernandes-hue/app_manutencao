@@ -16,10 +16,13 @@ leitor = csv.DictReader(arquivo)
 solicitacoes.extend(leitor)
 return solicitacoes
 
-@app.route("/")
-def inicio():
-solicitacoes = carregar_solicitacoes()
-return render_template(
-"index.html",
-solicitacoes=solicitacoes
+def salvar_solicitacoes(solicitacoes):
+with open(
+ARQUIVO, "w", newline="", encoding="utf-8"
+) as arquivo:
+escritor = csv.DictWriter(
+arquivo, fieldnames=CAMPOS
 )
+escritor.writeheader()
+escritor.writerows(solicitacoes)
+
